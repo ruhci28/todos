@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "cd todo && npm run build",
-    "install-client": "cd todo npm install",
-    "heroku-postbuild": "cd todo/ && npm install --only=dev && NODE_ENV=development npm install --no-shrinkwrap && npm run build",
+    "install-client": "cd todo yarn add ",
+    "heroku-postbuild": "cd todo/ && yarn add --only=dev && NODE_ENV=development yarn add  --no-shrinkwrap && npm run build",
     "start": "node server.js",
     "client": "cd todo && yarn start",
     "dev": "concurrently -n 'server,client' -c 'red,green'  \"node server.js\" \"npm run client\""
