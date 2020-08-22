@@ -158,9 +158,7 @@ app.route("/user/:userId")
       });
   });
 
-app.get('/',function(req,res){
-  res.send('server is working');
-})
+
 //////////////// Tasks
 app.route("/tasks")
   .get(function(req, res) {
