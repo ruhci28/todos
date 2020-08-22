@@ -13,6 +13,7 @@ function Header() {
   const dispatch = useDispatch();
   const islogged = useSelector(state=>state.islogged.islogged);
   const history = useHistory();
+  // logout function
   function logouts(event){
   axios.get("/logout")
        .then((res)=>{
@@ -35,7 +36,9 @@ function Header() {
 
       </h1>
       <span className="headerLink" style={{margin:10}}><NavLink  exact activeClassName="underline" to={"/"}><HomeIcon fontSize='large'/></NavLink></span>
-
+       {
+         // logout icon and todolist icon will only be shown when the user is logged in only.
+       }
       {islogged ?  <span>
                 <span className="headerLink" style={{margin:10}}><NavLink  exact activeClassName="underline" to="/todo" ><ListIcon fontSize='large'/></NavLink></span>
                 <span className="headerLink" style={{margin:10}}><ExitToAppIcon fontSize='large' onClick={event=>logouts(event)} /></span>

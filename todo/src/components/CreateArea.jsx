@@ -5,14 +5,13 @@ import Zoom from "@material-ui/core/Zoom";
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
+
+// ui for the form for creating new task
 function CreateArea(props) {
   const [task, setTask] = useState({
     title: "",
     category:1
   });
-
-
-
   function handleChange(event) {
     const { name, value } = event.target;
 

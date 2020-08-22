@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch,Route } from "react-router-dom";
 import Todo from "./Todos";
 import Home from "./Home";
 import Signin from './signin';
-
+// This component contains all the routes for the frontend
 function App() {
   return (
     <Router >

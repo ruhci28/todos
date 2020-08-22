@@ -1,3 +1,4 @@
+// handle editmode state of the application initially editmode is false
 const editmodeReducer = (state = {mode:false}, action ) => {
   switch(action.type){
     case 'TURNONEDITMODE':

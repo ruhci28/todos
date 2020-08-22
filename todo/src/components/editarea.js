@@ -7,6 +7,7 @@ import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import {useSelector} from 'react-redux';
 
+// ui for the form for editing selected task
 function EditArea(props) {
   const updatingtodo = useSelector(state => state.updatingtodo);
   const [task, setTask] = useState(updatingtodo);
@@ -21,6 +22,7 @@ function EditArea(props) {
       };
     });
   }
+  // call the updateTask to update the selected task
   function updateTask(event) {
     props.onUpdate(task.id,task);
     setTask({

@@ -23,10 +23,16 @@ function checkboxClick(){
   return (
     <div className="todo">
     <span>
+    {
+      // show check CheckCircleRounded and CheckCircleRoundedIcon on codition whether the task is checked or not
+    }
     {checked ? < CheckCircleRoundedIcon onClick={checkboxClick} style={{color:'black'}}/> :   <RadioButtonUncheckedRoundedIcon onClick={checkboxClick} style={{color:'black'}} />}
     </span>
 
       <h1 style={checked ? { textDecorationLine: 'line-through' }:{}}> {props.title}</h1>
+      {
+        // shows the category of the todo according to category number which the task contains in category field.
+      }
       <p style={{color:'#000'}}>{(category === '1')? '(Urgent and important)':(category === '2')? '(Time sensitive but less important)':(category==='3')?'(Important but not time sensitive)':'(Not important and not urgent)'}</p>
       <button onClick={handleClick}>
         <DeleteIcon />

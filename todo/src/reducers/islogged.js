@@ -1,3 +1,5 @@
+// handle islogged state of the app to allow or disallow acess to the users
+// initially islogged set to false
 const isloggedReducer = (state = {islogged:false}, action ) => {
   switch(action.type){
     case 'LOGIN':

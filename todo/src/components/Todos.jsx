@@ -8,6 +8,7 @@ import axios from 'axios';
 import {useLocation} from "react-router-dom";
 import {useSelector,useDispatch} from 'react-redux';
 import {turnoffeditmode} from '../actions';
+
 function Todos() {
   const dispatch = useDispatch()
   let location = useLocation();
@@ -16,6 +17,7 @@ function Todos() {
   useEffect(() => {
     const path = location.pathname;
     console.log(path);
+    // fetch the users task list
     axios.get(path)
     .then(response => {
     const iddata = response.data;
@@ -24,6 +26,7 @@ function Todos() {
       const id = iddata[i];
       const path1 = path+"/"+id;
         console.log(path1);
+        // fetch the actual todo item with the help of the user task list
       axios.get(path1)
            .then(res => {
              const data = res.data;
@@ -42,6 +45,7 @@ function Todos() {
   .catch(err=>{console.log(err)});
   // eslint-disable-next-line
 },[]);
+// function to add task to frontend and the database.
   function addTask(newTask) {
     // console.log(newTask);
      axios.post("/tasks",newTask)
@@ -60,6 +64,7 @@ function Todos() {
              console.log(error)
          });
   }
+  // function delete the task from the screen from the todo collections in database and from the users task list.
   function deleteTask(id,deleteIds) {
   const path = location.pathname+"/"+deleteIds;
       axios.delete(path)
@@ -74,6 +79,7 @@ function Todos() {
        console.log(err);
      });
   }
+  // function updates the task in database and frontend also .
   function updateTask(updateIds,updatedtask) {
     const path = "/tasks/"+updateIds;
     axios.patch(path,updatedtask)
@@ -96,6 +102,10 @@ function Todos() {
   return (
     <div >
     <Header / >
+    {
+      // show edit area or create area according to edit mode state. If mode is on EditArea will be shown and if editemode is Off
+      // create Area will be shown
+     }
     {editmode ? <EditArea onUpdate={updateTask}/>:<CreateArea onAdd = {addTask}/>}
     {
       tasks.map((noteItem, index) => {
