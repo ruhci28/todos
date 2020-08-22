@@ -1,4 +1,5 @@
 require('dotenv').config();
+var createError = require('http-errors');
 const express = require('express');
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
@@ -6,6 +7,7 @@ const cors = require("cors");
 const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
 var session = require('express-session');
+const morgan = require('morgan');
 
 const app = express();
 app.use(cors());
@@ -255,6 +257,7 @@ app.route("/tasks")
         }
       });
     });
+    app.use(morgan('tiny'));
     let port = process.env.PORT;
     if(port == null || port=="" ){
       port = 9000;

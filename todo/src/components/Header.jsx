@@ -14,7 +14,7 @@ function Header() {
   const islogged = useSelector(state=>state.islogged.islogged);
   const history = useHistory();
   function logouts(event){
-  axios.get("http://localhost:9000/logout")
+  axios.get("/logout")
        .then((res)=>{
          if(res.data){
            history.push('/');

@@ -36,7 +36,7 @@ function Home() {
   function submitUser(event) {
     event.preventDefault();
     if(user.username !== '' && user.password !== ''){
-      axios.post("http://localhost:9000/SignUp", user)
+      axios.post("/SignUp", user)
         .then(function(response) {
             if(response.status === 200){
               if(response.data !== "OOPS Registration Failed . Try Again Later !!!"){

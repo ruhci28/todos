@@ -36,7 +36,7 @@ function Home() {
   function submitUser(event) {
     event.preventDefault();
     if(user.username !== '' && user.password !== ''){
-      axios.post("http://localhost:9000/login", user)
+      axios.post("/login", user)
         .then(function(response) {
             if(response.status === 200){
               if(response.data !== "OOPS Something went wrong. Try Again Later !!!"){
