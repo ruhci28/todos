@@ -1,4 +1,4 @@
-const todotoupdateReducer = (state =  {date:'',title:''}, action ) => {
+const todotoupdateReducer = (state =  {category:'1',title:''}, action ) => {
   switch(action.type){
     case 'TODOTOUPDATE':
          return action.payload
