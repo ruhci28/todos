@@ -12,7 +12,6 @@ function App() {
     <Route path = "/" exact> <Home /></Route>
     <Route path = "/signin" exact> <Signin /></Route>
     <Route path={"/user/:userId"}><Todo /></Route>
-    <Route path = {"/todo"}><Todo / ></Route>
     </Switch>
      </div>
      </ Router>

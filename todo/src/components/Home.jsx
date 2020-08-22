@@ -59,7 +59,7 @@ function Home() {
     <h1 style={{marginBottom:'1%'}}> Sign me up!!  </h1>
     <form >
     <input onChange = {handleChange} value = {user.username} name = "username" placeholder = "Username" />
-    < input onChange = {handleChange} value = {user.password} name = "password" placeholder = "Password" />
+    < input type='password' onChange = {handleChange} value = {user.password} name = "password" placeholder = "Password" />
     <div className = "submit-button container" >
     <button onClick = {submitUser} > SignUp < /button>
     <p style={{marginTop:'1%'}}>Already have an accout <Link to="/signin" >Signin</Link></p>
