@@ -21,10 +21,11 @@ app.use(session({
   resave:false,
   saveUninitialized:false
 }));
-
+// passport for authentication
 app.use(passport.initialize());
 app.use(passport.session());
 
+// connection with the database
 mongoose.connect(process.env.MONGOATLASURI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -35,7 +36,7 @@ mongoose.connection.on('connected', () => {
 });
 
 mongoose.set("useCreateIndex",true);
-
+//  schema for todo item it has two field title and category
 const todoSchema =new mongoose.Schema({
   title:{
     type:String,
@@ -48,7 +49,7 @@ const todoSchema =new mongoose.Schema({
 
 });
 const Todo = mongoose.model("Todo", todoSchema);
-
+// schema for users
 const userSchema = new mongoose.Schema({
   username:{
     type:String,
@@ -72,7 +73,7 @@ passport.use(User.createStrategy());
 
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
-
+// post request for signing up the new user
 app.post("/SignUp",function(req,res){
   let login = false;
   User.register({username:req.body.username},req.body.password,function(err,user){
@@ -87,7 +88,8 @@ app.post("/SignUp",function(req,res){
     }
   })
 });
-///////////////LOGIN////////////////
+//  post request for login the user passport will authenticate if
+// the username and password are correct and then only opens todo page
 app.post("/login",function(req,res){
 const user = new User({
   username:req.body.username,
@@ -107,14 +109,14 @@ req.login(user,function(err){
 })
 
 });
-//////////////////LOGOUT/////////
+// logout request after that user have to login again to use the web app.
 app.get("/logout",function(req,res){
   let login = false;
   req.logout();
   login = true;
   res.send(true);
 });
-//////////////////////////// Specific Tasks for the User ////////////////////////////
+// through this route task to the particular user are send to the frontend . and
 app.route("/user/:userId")
   .get(function(req, res) {
     User.findOne({
@@ -161,7 +163,7 @@ app.route("/user/:userId")
   });
 
 
-//////////////// Tasks
+// route for getting all tasks and adding new task to the list
 app.route("/tasks")
   .get(function(req, res) {
   Todo.find(function(err, foundItem) {
@@ -185,7 +187,7 @@ app.route("/tasks")
       }
     });
   });
-  /////////specific tasks
+  // routes for updating the specific task
   app.route('/tasks/:taskId')
      .patch(function(req,res) {
        console.log(req.body);
@@ -197,7 +199,7 @@ app.route("/tasks")
          }
        });
      });
-  /////////////////////////////////////Specific TAsk for the user//////////////////////
+  // route for deleting specific task from the users task list and getting the specific task from the users task arrray.
   app.route("/user/:userId/:taskId")
     .get(function(req, res) {
           const newid = {id:req.params.taskId};
@@ -257,11 +259,13 @@ app.route("/tasks")
         }
       });
     });
+    // in production mode use the port assign by the heroku and in development use port 9000
     app.use(morgan('tiny'));
     let port = process.env.PORT;
     if(port == null || port=="" ){
       port = 9000;
     }
+    // frontend under production mode
     if(process.env.NODE_ENV === 'production'){
       app.use(express.static('todo/build'));
       app.get('*', (req, res) => {
